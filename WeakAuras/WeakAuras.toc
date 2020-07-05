@@ -1,6 +1,6 @@
 ﻿## Interface: 20400
-## Title: |cff33ffccFACTS |cffffffffWeakAuras
-## Author: Webbe and Lakim
+## Title: WeakAuras 2
+## Author: Mirrored, Shinizu @ Algalon - Main Realm / Kirin Tor
 ## Version: 2.0.8
 ## Notes: A powerful, comprehensive utilty for displaying graphics and information based on buffs, debuffs, and other triggers.
 ## Notes-esES: Potente y completa aplicación que te permitirá mostrar por pantalla múltiples diseños, basados en beneficios, perjuicios y otros activadores.
