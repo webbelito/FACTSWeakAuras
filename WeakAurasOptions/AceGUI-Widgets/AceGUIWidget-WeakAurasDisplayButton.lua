@@ -894,6 +894,7 @@ local function Constructor()
     button:SetWidth(1000);
     button.dgroup = nil;
     button.data = {};
+    button.toggle:Hide();
     
     local background = button:CreateTexture(nil, "BACKGROUND");
     button.background = background;

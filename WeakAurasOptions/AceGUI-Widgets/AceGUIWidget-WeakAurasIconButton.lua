@@ -64,6 +64,7 @@ local function Constructor()
   button:SetHeight(52);
   button:SetWidth(52);
   
+  
   local highlighttexture = button:CreateTexture(nil, "OVERLAY");
   --highlighttexture:SetTexture("Interface\\BUTTONS\\ButtonHilight-SquareQuickslot.blp");
   --highlighttexture:SetTexCoord(0.175, 0.875, 0.125, 0.825);

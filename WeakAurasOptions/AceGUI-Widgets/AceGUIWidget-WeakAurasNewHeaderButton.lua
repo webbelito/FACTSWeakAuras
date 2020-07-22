@@ -58,6 +58,7 @@ local function Constructor()
     button:SetHeight(20);
     button:SetWidth(1000);
     button:SetDisabledFontObject("GameFontNormal");
+    button.toggle:Hide();
     
     local background = button:CreateTexture(nil, "BACKGROUND");
     button.background = background;
