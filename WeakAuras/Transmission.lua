@@ -17,6 +17,8 @@ local regionTypes = WeakAuras.regionTypes;
 local event_types = WeakAuras.event_types;
 local status_types = WeakAuras.status_types;
 
+local prettyPrint = WeakAuras.prettyPrint;
+
 local function Ambiguate(v,k)
 	return(v)
 end
@@ -198,11 +200,17 @@ end
 
 function WeakAuras.CompressDisplay(data)
     local copiedData = {};
+
+    if(data ~= nil) then
+
     WeakAuras.DeepCopy(data, copiedData);
     copiedData.controlledChildren = nil;
     copiedData.parent = nil;
     WeakAuras.tableSubtract(copiedData, WeakAuras.DisplayStub(copiedData.regionType));
     return copiedData;
+
+    end
+
 end
 
 function WeakAuras.DecompressDisplay(data)
@@ -298,7 +306,8 @@ end
 
 local tooltipLoading;
 
-hooksecurefunc("ChatFrame_OnHyperlinkShow", function(self, link, text, button)
+hooksecurefunc("ChatFrame_OnHyperlinkShow", function(link, text, button)
+
     if(ItemRefTooltip.WeakAuras_Tooltip_Thumbnail) then
         ItemRefTooltip.WeakAuras_Tooltip_Thumbnail:Hide();
         ItemRefTooltip.WeakAuras_Tooltip_Thumbnail = nil;
@@ -313,6 +322,7 @@ hooksecurefunc("ChatFrame_OnHyperlinkShow", function(self, link, text, button)
         ItemRefTooltip.WeakAuras_Desc_Box:Hide();
     end
     if(link == "weakauras") then
+        
         local _, _, characterName, displayName = text:find("|Hweakauras|h|cFF8800FF%[([^%s]+) |r|cFF8800FF%- ([^%]]+)%]|h");
         if(characterName and displayName) then
             characterName = characterName:gsub("|c[Ff][Ff]......", ""):gsub("|r", "");
@@ -390,9 +400,12 @@ end
 
 function WeakAuras.DisplayToString(id, forChat)
     local data = WeakAuras.GetData(id);
-    local transmitData = WeakAuras.CompressDisplay(data);
-    transmitData.controlledChildren = nil;
+    
     if(data) then
+
+        local transmitData = WeakAuras.CompressDisplay(data);
+        transmitData.controlledChildren = nil;
+
         local children = data.controlledChildren;
         local transmit = {
             m = "d",
@@ -784,7 +797,7 @@ function WeakAuras.ShowDisplayTooltip(data, children, icon, icons, import, compr
             else
                 --print("Ok")
             end      
-            
+        
         WeakAuras.validate(data, regionTypes[regionType].default);
         regionOptions[regionType].modifyThumbnail(thumbnail_frame, thumbnail, data, regionTypes[regionType].modify);
         ItemRefTooltip.WeakAuras_Tooltip_Thumbnail = thumbnail;

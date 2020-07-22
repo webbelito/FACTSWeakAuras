@@ -170,6 +170,7 @@ function WeakAuras.split(input)
 end
 
 function WeakAuras.validate(input, default)
+
   for field, defaultValue in pairs(default) do
   if(type(defaultValue) == "table" and type(input[field]) ~= "table") then
     input[field] = {};
@@ -2724,19 +2725,40 @@ function WeakAuras.Convert(data, newType)
   WeakAuras.Add(data);
 end
 
+--[[function WeakAuras.DeepCopy(source, dest)
+  local function recurse(source, dest)
+
+    if(source ~= nil) then
+      
+      for i,v in pairs(source) do
+        if(type(v) == "table") then
+        dest[i] = type(dest[i]) == "table" and dest[i] or {};
+        recurse(v, dest[i]);
+        else
+        dest[i] = v;
+        end
+      end
+    end
+    recurse(source, dest);
+
+  end
+end--]]
+
+
 function WeakAuras.DeepCopy(source, dest)
   local function recurse(source, dest)
-  for i,v in pairs(source) do
-    if(type(v) == "table") then
-    dest[i] = type(dest[i]) == "table" and dest[i] or {};
-    recurse(v, dest[i]);
-    else
-    dest[i] = v;
+    for i,v in pairs(source) do
+      if(type(v) == "table") then
+        dest[i] = type(dest[i]) == "table" and dest[i] or {};
+        recurse(v, dest[i]);
+      else
+        dest[i] = v;
+      end
     end
-  end
   end
   recurse(source, dest);
 end
+
 
 function WeakAuras.Copy(sourceid, destid)
   local sourcedata = db.displays[sourceid];
