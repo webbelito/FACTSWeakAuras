@@ -1788,58 +1788,6 @@ WeakAuras.event_prototypes = {
     hasSpellID = true,
     automaticrequired = true
   },
-  ["Swing Timer"] = {
-    type = "status",
-    events = {
-      "SWING_TIMER_START",
-      "SWING_TIMER_CHANGE",
-      "SWING_TIMER_END"
-    },
-    name = L["Swing Timer"],
-    init = function(trigger)
-      trigger.hand = trigger.hand or "main";
-      WeakAuras.InitSwingTimer();
-      local ret = [[
-    local inverse = %s;
-    local hand = "%s";
-    local duration, expirationTime = WeakAuras.GetSwingTimerInfo(hand);
-    ]];
-      return ret:format((trigger.use_inverse and "true" or "false"), trigger.hand);
-    end,
-    args = {
-      {
-        name = "hand",
-        required = true,
-        display = L["Weapon"],
-        type = "select",
-        values = "swing_types",
-        test = "true"
-      },
-      {
-        name = "inverse",
-        display = L["Inverse"],
-        type = "toggle",
-        test = "true"
-      },
-      {
-        hidden = true,
-        test = "(inverse and duration == 0) or (not inverse and duration > 0)"
-      }
-    },
-    durationFunc = function(trigger)
-      local duration, expirationTime = WeakAuras.GetSwingTimerInfo(trigger.hand);
-      return duration, expirationTime;
-    end,
-    nameFunc = function(trigger)
-      local _, _, name = WeakAuras.GetSwingTimerInfo(trigger.hand);
-      return name;
-    end,
-    iconFunc = function(trigger)
-      local _, _, _, icon = WeakAuras.GetSwingTimerInfo(trigger.hand);
-      return icon;
-    end,
-    automaticrequired = true
-  },
   ["Action Usable"] = {
     type = "status",
     events = {
