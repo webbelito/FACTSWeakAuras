@@ -12,3 +12,9 @@ function WeakAuras.RegisterRegionType()
 end
 function WeakAuras.RegisterRegionOptions()
 end
+
+WeakAuras.printPrefix = "|cFF8800FFWeakAuras|r"
+
+WeakAuras.prettyPrint = function(msg)
+    print(WeakAuras.printPrefix .. msg)
+  end

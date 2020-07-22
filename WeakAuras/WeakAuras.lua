@@ -29,6 +29,8 @@ local L = WeakAuras.L;
 
 local queueshowooc;
 
+local prettyPrint = WeakAuras.prettyPrint
+
 function WeakAuras.OpenOptions(msg)
   if not(IsAddOnLoaded("WeakAurasOptions")) then
     if InCombatLockdown() then
@@ -3298,6 +3300,7 @@ function WeakAuras.SyncParentChildRelationships(silent)
     for childId, _ in pairs(parentToChild[id]) do
       if not(tContains(data.controlledChildren, childId)) then
       if not(silent) then
+        prettyPrint("Silent: ")
         print("|cFF8800FFWeakAuras|r detected desynchronization in saved variables:", id, "does not control", childId, "but should");
       end
       tinsert(data.controlledChildren, childId);
